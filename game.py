@@ -20,7 +20,7 @@ class Game:
                 self.has_not_letters.append(letter)
 
     def found_word(self, word, guessed_word):
-        return word.letters == guessed_word
+        return word.letters == guessed_word.letters
 
     def result_string(self):
         string = list(range(5))
