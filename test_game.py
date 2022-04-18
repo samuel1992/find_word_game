@@ -7,7 +7,6 @@ from game import Letter, Word
 def word():
     myword = 'test'
     word = Word(myword)
-    word.build()
     return word
 
 
@@ -25,7 +24,6 @@ class TestWord:
     def test_build_letters(self):
         myword = 'test'
         word = Word(myword)
-        word.build()
 
         assert len(word.letters) == len(myword)
         for i, e in zip(myword, word.letters):
