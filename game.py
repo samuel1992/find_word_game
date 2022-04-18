@@ -13,13 +13,12 @@ class Word:
     def __init__(self, word):
         assert len(word) == 5
 
+        self.word = word
         self.letters = [Letter(value=letter, position=position)
                         for position, letter in enumerate(word)]
 
     def has(self, letter):
-        letter_values = [l.value for l in self.letters]
-
-        return letter.value in letter_values
+        return letter.value in self.word
 
     def has_at_same_position(self, letter):
         return self.letters[letter.position] == letter
