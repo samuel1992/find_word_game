@@ -40,6 +40,18 @@ class TestWord:
         word = Word('testt')
         assert word
 
+    def test_compare_words__they_match(self):
+        word = Word('testt')
+        word2 = Word('testt')
+
+        assert word == word2
+
+    def test_compare_words__they_dont_match(self):
+        word = Word('testt')
+        word2 = Word('teszz')
+
+        assert word != word2
+
     def test_word_must_have_5_letters(self):
         with pytest.raises(AssertionError):
             Word('abcdef')

@@ -26,6 +26,10 @@ class Word:
         self.letters = [Letter(value=letter, position=position)
                         for position, letter in enumerate(word)]
 
+    def __eq__(self, other):
+        assert isinstance(other, self.__class__)
+        return self.letters == other.letters
+
     @property
     def _string_word(self):
         letters = filter(lambda x: not x.correct, self.letters)

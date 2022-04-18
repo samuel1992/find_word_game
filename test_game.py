@@ -57,10 +57,3 @@ class TestGame:
         game.compare_words(word, guessed_word)
 
         assert game.result_string() == expected_string
-
-    def test_found_the_word(self):
-        game = Game()
-        word = Word('testt')
-        guessed_word = Word('testt')
-
-        assert game.found_word(word, guessed_word)

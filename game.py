@@ -3,6 +3,10 @@ from choose_word import choose_word
 from word import Word
 
 
+#TODO: the game object in fact is round, so it could be called like that
+# and actually receive the words in the initializator at each round
+# could rename the lists to: found_letters, not_found_letters,
+# found_in_different_position_letters
 class Game:
     def __init__(self):
         self.has_letters = []
@@ -22,9 +26,6 @@ class Game:
             else:
                 self.has_not_letters.append(letter)
 
-    def found_word(self, word, guessed_word):
-        return word.letters == guessed_word.letters
-
     def result_string(self):
         string = list(range(5))
 
@@ -39,9 +40,8 @@ class Game:
 
         return ' '.join(string)
 
-    def print_result(self, guessed_word):
-        print('==', ' '.join(guessed_word), '==')
-        print('==', self.result_string(), '==')
+    def __str__(self):
+        return '== ' + self.result_string() + ' =='
 
 
 def ask_for_word():
@@ -62,10 +62,13 @@ def play_game():
 
         game = Game()
         game.compare_words(word, guessed_word)
-        game.print_result(_guessed_word)
 
-        if game.found_word(word, guessed_word):
+        print('==', ' '.join(_guessed_word), '==')
+        print(game)
+
+        if word == guessed_word:
             print('You have found the word', _word)
+            break
 
     print('The word was', _word)
 
