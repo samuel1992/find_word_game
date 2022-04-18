@@ -55,14 +55,6 @@ class TestWord:
 
 
 class TestGame:
-    """
-    I tried to make all situations possible for the game logic:
-        - having the same letters in the same position
-        - having none of the letters
-        - having the same letters but all in different positions
-        - having some non existent letters, some in the same position, some in
-          the different position
-    """
     @pytest.mark.parametrize(
         'word, guessed_word, expected_len_of_hases',
         [
@@ -73,8 +65,15 @@ class TestGame:
         ]
     )
     def test_compare_words(self, word, guessed_word, expected_len_of_hases):
+        """
+        I tried to make all situations possible for the game logic:
+        - having the same letters in the same position
+        - having none of the letters
+        - having the same letters but all in different positions
+        - having some non existent letters, some in the same position, some in
+          the different position
+        """
         game = Game()
-
         word = Word(word)
         guessed_word = Word(guessed_word)
 
