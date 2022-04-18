@@ -94,6 +94,7 @@ class TestGame:
             ('ABCDE', 'FGHIJ', '- - - - -'),
             ('ABCDE', 'EDBCA', '| | | | |'),
             ('ABCDE', 'ZBEIY', '- + | - -'),
+            ('ABCDE', 'AXYZA', '+ - - - -'),
             ('ABADE', 'AXYZA', '+ - - - |'),
         ]
     )
