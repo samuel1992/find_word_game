@@ -11,10 +11,22 @@ class Game:
 
     def compare_words(self, word, guessed_word):
         for letter in guessed_word.letters:
+            if not word.has(letter):
+                self.has_not_letters.append(letter)
+
+        for letter in self.has_not_letters:
+            guessed_word.letters.remove(letter)
+
+        for letter in guessed_word.letters:
             if word.has_at_same_position(letter):
-                word.letters.remove(letter)
                 self.has_letters.append(letter)
-            elif word.has(letter):
+
+        for letter in self.has_letters:
+            word.letters.remove(letter)
+            guessed_word.letters.remove(letter)
+
+        for letter in guessed_word.letters:
+            if word.has(letter):
                 self.has_at_different_position_letters.append(letter)
             else:
                 self.has_not_letters.append(letter)

@@ -22,9 +22,13 @@ class Word:
         self.letters = [Letter(value=letter, position=position)
                         for position, letter in enumerate(word)]
 
+    @property
+    def _string_word(self):
+        return ''.join(unidecode(i.value) for i in self.letters)
+
     def has(self, letter):
         value = unidecode(letter.value)
-        return value in ''.join(unidecode(i.value) for i in self.letters)
+        return value in self._string_word
 
     def has_at_same_position(self, letter):
         return letter in self.letters

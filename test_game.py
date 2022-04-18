@@ -14,6 +14,7 @@ class TestGame:
             ('ABCDE', 'ZBEIY', (1,3,1)),
             ('ABCDE', 'AXYZA', (1,4,0)),
             ('ABADE', 'AXYZA', (1,3,1)),
+            ('ABCDE', 'EZZZE', (1,4,0)),
         ]
     )
     def test_compare_words(self, word, guessed_word, expected_len_of_hases):
