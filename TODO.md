@@ -20,7 +20,7 @@ Game returns:
 # TODOS:
 - Setup a python project #DONE
 - Store a list of words with 5 letters #DONE
-- Word abstraction with some way to know the letter position
+- Word abstraction with some way to know the letter position #DONE
 - Validate the entered word
   - has 5 letters #DONE
   - the entered word is a valid word: exists in our list of words

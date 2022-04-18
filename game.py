@@ -11,7 +11,7 @@ class Letter:
 
 class Word:
     def __init__(self, word):
-        assert word
+        assert len(word) == 5
 
         self.letters = [Letter(value=letter, position=position)
                         for position, letter in enumerate(word)]
@@ -21,21 +21,21 @@ class Word:
 
         return letter.value in letter_values
 
-    def same_position(self, letter):
+    def has_at_same_position(self, letter):
         return self.letters[letter.position] == letter
 
 
 class Game:
-    @staticmethod
-    def play():
-        chosen_word = Word('GENIO')
-        word = Word('GORDO')
+    def __init__(self):
+        self.has_letters = []
+        self.has_not_letters = []
+        self.has_at_different_position_letters = []
 
-        for letter in word.letters:
-            if chosen_word.has(letter):
-                print("has the letter", letter.value)
-
-            if chosen_word.same_position(letter):
-                print("has letter in same position", letter.value)
-
-Game().play()
+    def compare_words(self, word, guessed_word):
+        for letter in guessed_word.letters:
+            if word.has(letter) and word.has_at_same_position(letter):
+                self.has_letters.append(letter)
+            elif word.has(letter):
+                self.has_at_different_position_letters.append(letter)
+            else:
+                self.has_not_letters.append(letter)
