@@ -46,12 +46,12 @@ class TestWord:
     def test_word_has_letter_at_different_position(self, word):
         letter = Letter('e', 0)
 
-        assert word.has_at_different_position(letter)
+        assert word.has(letter)
 
     def test_word_has_no_letter_at_different_position(self, word):
         letter = Letter('z', 0)
 
-        assert not word.has_at_different_position(letter)
+        assert not word.has(letter)
 
 
 class TestGame:

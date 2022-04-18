@@ -16,11 +16,11 @@ class Word:
         self.letters = [Letter(value=letter, position=position)
                         for position, letter in enumerate(word)]
 
+    def has(self, letter):
+        return letter.value in ''.join(i.value for i in self.letters)
+
     def has_at_same_position(self, letter):
         return letter in self.letters
-
-    def has_at_different_position(self, letter):
-        return letter.value in ''.join(i.value for i in self.letters)
 
 
 class Game:
@@ -34,7 +34,7 @@ class Game:
             if word.has_at_same_position(letter):
                 word.letters.remove(letter)
                 self.has_letters.append(letter)
-            elif word.has_at_different_position(letter):
+            elif word.has(letter):
                 self.has_at_different_position_letters.append(letter)
             else:
                 self.has_not_letters.append(letter)
