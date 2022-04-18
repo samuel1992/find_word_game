@@ -15,6 +15,19 @@ class TestLetter:
         letter = Letter('a', 0)
         assert letter
 
+    def test_letters_with_accents(self):
+       letter = Letter('ã', 0)
+       another = Letter('a', 0)
+
+       assert letter == another
+       assert letter in [another]
+
+       letter = Letter('é', 0)
+       another = Letter('e', 0)
+
+       assert letter == another
+       assert letter in [another]
+
 
 class TestWord:
     def test_create_a_word(self):
@@ -33,6 +46,16 @@ class TestWord:
         for i, e in zip(myword, word.letters):
             assert i == e.value
 
+    def test_word_has_letter(self, word):
+        letter = Letter('e', 0)
+
+        assert word.has(letter)
+
+    def test_word_has_no_letter(self, word):
+        letter = Letter('z', 0)
+
+        assert not word.has(letter)
+
     def test_word_has_letter_at_same_position(self, word):
         letter = Letter('t', 0)
 
@@ -42,16 +65,3 @@ class TestWord:
         letter = Letter('z', 0)
 
         assert not word.has_at_same_position(letter)
-
-    def test_word_has_letter_at_different_position(self, word):
-        letter = Letter('e', 0)
-
-        assert word.has(letter)
-
-    def test_word_has_no_letter_at_different_position(self, word):
-        letter = Letter('z', 0)
-
-        assert not word.has(letter)
-
-
-
