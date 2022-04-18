@@ -26,3 +26,14 @@ Game returns:
   - the entered word is a valid word: exists in our list of words
 - Compare word with another, and return the differences 
 - Indifference with words that has accent
+
+
+## PRINT THE RESULT
+WORD: TEYST
+Guessed word: TESTT
++ = has the letter in the same position
+- = doesn't have the letter
+| = has the letter but in a different position
+
+== T E S T T ==
+== + - | - + ==

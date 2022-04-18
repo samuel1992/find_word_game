@@ -33,25 +33,25 @@ class TestWord:
         for i, e in zip(myword, word.letters):
             assert i == e.value
 
-    def test_word_has_letter(self, word):
-        letter = Letter('t', 0)
-
-        assert word.has(letter)
-
-    def test_word_has_no_letter(self, word):
-        letter = Letter('z', 0)
-
-        assert not word.has(letter)
-
-    def test_word_has_letter_on_has_at_same_position(self, word):
+    def test_word_has_letter_at_same_position(self, word):
         letter = Letter('t', 0)
 
         assert word.has_at_same_position(letter)
 
-    def test_word_has_no_letter_on_has_at_same_position(self, word):
+    def test_word_has_no_letter_at_same_position(self, word):
         letter = Letter('z', 0)
 
         assert not word.has_at_same_position(letter)
+
+    def test_word_has_letter_at_different_position(self, word):
+        letter = Letter('e', 0)
+
+        assert word.has_at_different_position(letter)
+
+    def test_word_has_no_letter_at_different_position(self, word):
+        letter = Letter('z', 0)
+
+        assert not word.has_at_different_position(letter)
 
 
 class TestGame:
@@ -62,6 +62,8 @@ class TestGame:
             ('ABCDE', 'FGHIJ', (0,5,0)),
             ('ABCDE', 'EDBCA', (0,0,5)),
             ('ABCDE', 'ZBEIY', (1,3,1)),
+            ('ABCDE', 'AXYZA', (1,4,0)),
+            ('ABADE', 'AXYZA', (1,3,1)),
         ]
     )
     def test_compare_words(self, word, guessed_word, expected_len_of_hases):
@@ -85,4 +87,21 @@ class TestGame:
             expected_len_of_hases[2]
         )
 
-        assert sum(expected_len_of_hases) == 5
+    @pytest.mark.parametrize(
+        'word, guessed_word, expected_string',
+        [
+            ('ABCDE', 'ABCDE', '+ + + + +'),
+            ('ABCDE', 'FGHIJ', '- - - - -'),
+            ('ABCDE', 'EDBCA', '| | | | |'),
+            ('ABCDE', 'ZBEIY', '- + | - -'),
+            ('ABADE', 'AXYZA', '+ - - - |'),
+        ]
+    )
+    def test_result_string(self, word, guessed_word, expected_string):
+        game = Game()
+        word = Word(word)
+        guessed_word = Word(guessed_word)
+
+        game.compare_words(word, guessed_word)
+
+        assert game.result_string() == expected_string
