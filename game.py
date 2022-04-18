@@ -9,6 +9,8 @@ class Game:
         self.has_not_letters = []
         self.has_at_different_position_letters = []
 
+    #TODO: still having few bugs, need to think some way to organize it without
+    # removing the letters from the word objects
     def compare_words(self, word, guessed_word):
         for letter in guessed_word.letters:
             if not word.has(letter):
@@ -49,7 +51,7 @@ class Game:
         return ' '.join(string)
 
     def print_result(self, guessed_word):
-        print('==', ' '.join(i.value for i in guessed_word.letters), '==')
+        print('==', ' '.join(guessed_word), '==')
         print('==', self.result_string(), '==')
 
 
@@ -66,11 +68,12 @@ def play_game():
     _word = choose_word().upper()
     word = Word(_word)
     for _ in range(5):
-        guessed_word = Word(ask_for_word().upper())
+        _guessed_word = ask_for_word().upper()
+        guessed_word = Word(_guessed_word)
 
         game = Game()
         game.compare_words(word, guessed_word)
-        game.print_result(guessed_word)
+        game.print_result(_guessed_word)
 
         if game.found_word(word, guessed_word):
             print('You have found the word', _word)
