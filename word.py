@@ -7,6 +7,10 @@ from unidecode import unidecode
 class Letter:
     value: str
     position: int
+    correct: bool = False
+
+    def set_to_correct(self):
+        self.correct = True
 
     def __eq__(self, other):
         assert isinstance(other, self.__class__)
@@ -24,7 +28,8 @@ class Word:
 
     @property
     def _string_word(self):
-        return ''.join(unidecode(i.value) for i in self.letters)
+        letters = filter(lambda x: not x.correct, self.letters)
+        return ''.join(unidecode(i.value) for i in letters)
 
     def has(self, letter):
         value = unidecode(letter.value)

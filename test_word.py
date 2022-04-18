@@ -28,6 +28,12 @@ class TestLetter:
        assert letter == another
        assert letter in [another]
 
+    def test_letter_set_to_correct(self):
+        letter = Letter('a', 0)
+        letter.set_to_correct()
+
+        assert letter.correct
+
 
 class TestWord:
     def test_create_a_word(self):
